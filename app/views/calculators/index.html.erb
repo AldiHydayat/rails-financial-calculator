@@ -1,0 +1,26 @@
+<%= form_tag action: 'create' do %>
+    <%= label_tag 'target', 'Target Dana' %>
+    <%= text_field_tag 'target' %>
+    <br>
+    <%= label_tag 'periode', 'Periode' %>
+    <%= select_tag "periode", options_for_select(@periode_list.map { |i| ["#{i} Bulan", i] }) %>
+    <br>
+    <%= label_tag 'awal', 'Setoran Awal' %>
+    <%= text_field_tag 'awal' %>
+    <br>
+    <%= label_tag 'setoran', 'Setoran' %>
+    <%= text_field_tag 'setoran' %>
+    <br>
+    <% if @tanggal_buka %>
+        <%= label_tag 'tanggal_buka', 'Tanggal Pembukaan Rekening' %>
+        <%= Time.zone.today %>
+    <% end %>
+    <br>
+    <%= submit_tag 'Submit' %>
+<% end %>
+
+<% if @hasil.present? %>
+    <% @hasil.map do |key, val| %>
+        <%= render 'card', saldo: key["bulan"], saldo_akhir: key['saldo_akhir'] %>
+    <% end %>
+<% end %>
