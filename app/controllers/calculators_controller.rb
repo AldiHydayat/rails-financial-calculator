@@ -28,7 +28,7 @@ class CalculatorsController < ApplicationController
             elsif @saldo_akhir < @target
 
                 @saldo = @saldo_akhir + @setoran
-                @bunga = Calculator.hitung_bunga(@saldo_akhir, @periode)
+                @bunga = Calculator.hitung_bunga(@saldo, @periode)
                 @pajak_bunga = Calculator.pajak_bunga(@bunga)
                 @total_saldo_akhir = Calculator.hitung_saldo_akhir(@saldo, @bunga, @pajak_bunga, @biaya_admin)
 
