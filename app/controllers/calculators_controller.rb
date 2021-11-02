@@ -15,9 +15,9 @@ class CalculatorsController < ApplicationController
         @biaya_admin = 5000
         
         @hasil = []
-        
-        for i in 0..(@periode.to_i - 1) do
-            
+
+        i = 0
+        while i < (@periode.to_i - 1) || @saldo_akhir < @target do
             if i == 0
                 @bunga = Calculator.hitung_bunga(@awal, @periode)
                 @pajak_bunga = Calculator.pajak_bunga(@bunga)
@@ -25,7 +25,7 @@ class CalculatorsController < ApplicationController
 
                 @hasil.push(Calculator.set_data_kalkulasi(bulan: @tanggal_buka.strftime("%B %Y"), saldo: @awal, setoran: 0, bunga: @bunga, pajak_bunga: @pajak_bunga, biaya_admin: @biaya_admin, saldo_akhir: @saldo_akhir ))
 
-            elsif @saldo_akhir < @target
+            else
 
                 @saldo = @saldo_akhir + @setoran
                 @bunga = Calculator.hitung_bunga(@saldo, @periode)
@@ -35,9 +35,8 @@ class CalculatorsController < ApplicationController
                 @hasil.push(Calculator.set_data_kalkulasi(bulan: (@tanggal_buka + i.month).strftime("%B %Y"), saldo: @saldo_akhir, setoran: @setoran, bunga: @bunga, pajak_bunga: @pajak_bunga, biaya_admin: @biaya_admin, saldo_akhir: @total_saldo_akhir ))
 
                 @saldo_akhir = @total_saldo_akhir
-            else
-                false
             end
+            i = i + 1
         end
         render 'index'
     end
