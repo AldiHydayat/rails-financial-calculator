@@ -24,14 +24,17 @@ class CalculatorsController < ApplicationController
                 @saldo_akhir = Calculator.hitung_saldo_akhir(@saldo_akhir, @bunga, @pajak_bunga, @biaya_admin)
 
                 @hasil.push(["bulan" => @tanggal_buka.strftime("%B %Y"), "saldo" => @awal , "setoran" => 0 ,"bunga" => @bunga, "pajak_bunga" => @pajak_bunga, "biaya_admin" => @biaya_admin, "saldo_akhir" => @saldo_akhir ])
+
             elsif @saldo_akhir < @target
 
-                @saldo_akhir = @saldo_akhir + @setoran
+                @saldo = @saldo_akhir + @setoran
                 @bunga = Calculator.hitung_bunga(@saldo_akhir, @periode)
                 @pajak_bunga = Calculator.pajak_bunga(@bunga)
-                @saldo_akhir = Calculator.hitung_saldo_akhir(@saldo_akhir, @bunga, @pajak_bunga, @biaya_admin)
+                @total_saldo_akhir = Calculator.hitung_saldo_akhir(@saldo, @bunga, @pajak_bunga, @biaya_admin)
 
-                @hasil.push(["bulan" => (@tanggal_buka + i.month).strftime("%B %Y"), "saldo" => @saldo_akhir , "setoran" => @setoran,"bunga" => @bunga, "pajak_bunga" => @pajak_bunga, "biaya_admin" => @biaya_admin, "saldo_akhir" => @saldo_akhir ])
+                @hasil.push(["bulan" => (@tanggal_buka + i.month).strftime("%B %Y"), "saldo" => @saldo_akhir , "setoran" => @setoran,"bunga" => @bunga, "pajak_bunga" => @pajak_bunga, "biaya_admin" => @biaya_admin, "saldo_akhir" => @total_saldo_akhir ])
+
+                @saldo_akhir = @total_saldo_akhir
             else
                 false
             end

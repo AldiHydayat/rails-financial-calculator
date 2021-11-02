@@ -1,1 +1,13 @@
-saldo : <%= saldo %> | saldo_akhir : <%= saldo_akhir.to_s %>
+<div class="card col-md-3 m-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= bulan %></h5>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Saldo: <%= number_to_currency(saldo, unit: 'Rp.', separator: ",", delimeter: "") %></li>
+        <li class="list-group-item">Setoran: <%= number_to_currency(setoran, unit: 'Rp.', separator: ",", delimeter: "") %></li>
+        <li class="list-group-item">Bunga: <%= number_to_currency(bunga, unit: 'Rp.', separator: ",", delimeter: "") %></li>
+        <li class="list-group-item">Pajak Bunga: <%= number_to_currency(pajak_bunga, unit: 'Rp.', separator: ",", delimeter: "") %></li>
+        <li class="list-group-item">Biaya Admin: <%= number_to_currency(biaya_admin, unit: 'Rp.', separator: ",", delimeter: "") %></li>
+        <li class="list-group-item">Saldo Akhir: <%= number_to_currency(saldo_akhir, unit: 'Rp.', separator: ",", delimeter: "") %></li>
+    </ul>
+  </div>
+</div>
