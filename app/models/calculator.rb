@@ -1,4 +1,8 @@
 class Calculator < ApplicationRecord
+    def self.set_data_kalkulasi(bulan:, saldo:, setoran:, bunga:, pajak_bunga:, biaya_admin:, saldo_akhir:)
+        ["bulan" => bulan, "saldo" => saldo , "setoran" => setoran ,"bunga" => bunga, "pajak_bunga" => pajak_bunga, "biaya_admin" => biaya_admin, "saldo_akhir" => saldo_akhir ]
+    end
+
     def self.hitung_saldo_akhir(saldo, bunga, pajak_bunga, biaya_admin)
         saldo + bunga - pajak_bunga - biaya_admin
     end
