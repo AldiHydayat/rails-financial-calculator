@@ -24,25 +24,25 @@
         <div class="col-md-6 offset-3">
             <div class="mb-3">
                 <%= label_tag 'target', 'Target Dana', class: "form-label" %>
-                <%= text_field_tag 'target', nil, class: "form-control" %>
+                <%= text_field_tag 'target', @target ? @target : nil, class: "form-control" %>
             </div>
         </div>
         <div class="col-md-6 offset-3">
             <div class="mb-3">
                 <%= label_tag 'periode', 'Periode', class: "form-label" %>
-                <%= select_tag 'periode', options_for_select(@periode_list.map { |i| ["#{i} Bulan", i] }), class: "form-select" %>
+                <%= select_tag 'periode', options_for_select(@periode_list.map { |i| ["#{i} Bulan", i] }, @periode), class: "form-select" %>
             </div>
         </div>
         <div class="col-md-6 offset-3">
             <div class="mb-3">
                 <%= label_tag 'awal', 'Setoran Awal', class: "form-label" %>
-                <%= text_field_tag 'awal', nil, class: "form-control" %>
+                <%= text_field_tag 'awal', @awal ? @awal : nil, class: "form-control" %>
             </div>
         </div>
         <div class="col-md-6 offset-3">
             <div class="mb-3">
                 <%= label_tag 'setoran', 'Setoran', class: "form-label" %>
-                <%= text_field_tag 'setoran', nil, class: "form-control" %>
+                <%= text_field_tag 'setoran', @setoran ? @setoran : nil, class: "form-control" %>
             </div>
         </div>
         <div class="col-md-6 offset-3">
